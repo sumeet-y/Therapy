@@ -16,11 +16,18 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     const target = e.target as HTMLInputElement;
-    
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "", // Reset the specific error for the field being edited
+    }));
+
     setFormData({
       ...formData,
       [name]: target.type === "checkbox" ? target.checked : value,
@@ -173,7 +180,10 @@ export default function ContactForm() {
           )}
         </div>
 
-        <button type="submit" className="btn  w-full rounded-md bg-green-900 text-white">
+        <button
+          type="submit"
+          className="btn  w-full rounded-md bg-green-900 text-white"
+        >
           Submit
         </button>
 
