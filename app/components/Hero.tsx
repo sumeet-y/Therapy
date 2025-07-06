@@ -7,7 +7,6 @@ const Hero = () => {
         <video
           width="1920"
           height="990"
-          controls
           preload="none"
           autoPlay
           muted
